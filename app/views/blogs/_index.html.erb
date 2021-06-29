@@ -1,0 +1,54 @@
+<h1>Other Blogs</h1>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery.fx.interval demo</title>
+  <style>
+  #test {
+    width: 50px;
+    height: 30px;
+    margin: 5px;
+    float: left;
+    background: green;
+  }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<body>
+ 
+<p><input type="button" value="Run"></p>
+<div id="test"></div>
+ 
+<script>
+jQuery.fx.interval = 100;
+$( "input" ).click(function() {
+  $( "#test" ).toggle( 3000 );
+});
+</script>
+ 
+</body>
+</html>
+<!-- <script>
+  function msg() {
+    var blog <%=  @other_blogs%>
+  }
+  </script> -->
+<div style="padding-left: 10px">
+  <% @other_blogs.each do |blog| %>
+    <h2>Blog</h2>
+    <h4><%= blog.blog_title %></h4>
+    <p style="padding-left: 20px"><%= blog.description %></p>
+     <p id="likes-count">Likes : <%= pluralize(blog.likes.count, 'Like') %></p>
+    <% previous_like = blog.likes.find { |like| like.user_id == @current_user.id} %>
+<div id="like-button"><%= like_button_tag blog, previous_like %></div><br>
+    <%= link_to pluralize(blog.comments.count, 'comment'), blog_comments_path(blog) %>
+
+  <% end %>
+</div>
+
+Blog.all.each do |i| 
+if i.likes.count >= 2 
+ p {"#{i.id} -> #{i.blog_title}"}
+end  
+ end

@@ -1,0 +1,19 @@
+<h1>Sign in</h1>
+<div style="color: red">
+  <% flash.each do |key, value| %>
+    <%= content_tag :strong, value, class: "flash #{key}" %>
+  <% end %>
+</div>
+<%= form_with url: sign_in_path do |form| %>
+  <div>
+    <%= form.label :email %><br>
+    <%= form.text_field :email, placeholder: "Enter Your Email" %>
+  </div>
+  <div>
+    <%= form.label :password %><br>
+    <%= form.password_field :password , placeholder: "Enter Your Password"%>
+  </div><br>
+  <div>
+    <%= form.submit "Sign In" %>
+  </div>
+<% end %> 

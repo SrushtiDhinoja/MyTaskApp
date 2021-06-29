@@ -1,0 +1,79 @@
+// This file is automatically compiled by Webpack, along with any other files
+// present in this directory. You're encouraged to place your actual application logic in
+// a relevant structure within app/javascript and only use these pack files to reference
+// that code so it'll be compiled.
+
+//= require jquery3
+//= require jquery_ujs
+import "bootstrap/scss/bootstrap"
+import Rails from "@rails/ujs"
+import Turbolinks from "turbolinks"
+import * as ActiveStorage from "@rails/activestorage"
+import "channels"
+global.$ = jQuery;
+Rails.start()
+Turbolinks.start()
+ActiveStorage.start()
+
+$(document).on('turbolinks:load', function (e) {
+  $( ":header" ).css({color: "blue" });
+  $('#logo').attr({ src: "<%= asset_path('background.jpeg') %>" });
+  moveToMyBlogs();
+  moveToOtherBlogs();
+  moveToHome();
+  //test();
+});
+
+function moveToMyBlogs() {
+ $('#my-blogs').click(function(e){
+  var request = $.ajax({
+    type: "get",
+    url: "/users/" + this.parentElement.id + "/blogs/my_blogs",
+    data: "",
+    dataType: "script",
+    success: function(){
+      $( ":header" ).css({color: "blue" });
+    }
+  })
+  request.done(function( ) {
+    alert( "moved to my blog successfully!!!");
+  })
+  request.fail(function() {
+    alert( "error" );
+  });
+ });
+}
+
+function moveToOtherBlogs() {
+ $('#other-blogs').click(function(e){
+  $.ajax({
+    type: "get",
+    url: "/other_blogs/blogs",
+    data: "",
+    dataType: "script",
+    success: function(){
+      $( ":header" ).css({color: "blue" });
+    }
+  })
+  .done(function( ) {
+    alert( "moved to other blog successfully!!!");
+  });
+ });
+}
+
+function moveToHome() {
+ $('#home').click(function(e){
+  $.ajax({
+    type: "get",
+    url: "/",
+    data: "",
+    dataType: "script",
+    success: function(){
+      $( ":header" ).css({color: "blue" });
+    }
+  })
+  .done(function( ) {
+    alert( "moved to home successfully!!!");
+  });
+ });
+}

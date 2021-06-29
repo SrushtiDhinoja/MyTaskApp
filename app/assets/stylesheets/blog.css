@@ -1,0 +1,25 @@
+   .users span p {display:none;}
+  .users span:hover p {display:block;}
+  .users span {color: rgb(40,40,40)}
+  .users p {color: rgb(70,70,70)}
+
+ 
+  .button{
+    color: #202020;
+    background-color: #707070;
+    border-color: #404040;
+  }
+  .fa {
+    font-size: 50px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .fa:hover {
+    color: darkblue;
+  }
+  .tablerows:hover td {
+    color: #404040;
+    background-color: #D3D3D3;
+  }
+

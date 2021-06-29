@@ -1,0 +1,26 @@
+<h1>Comments</h1>
+<h4 style="padding-left: 10px"><%= pluralize(@blog.comments.count, 'Comment')%></h4>
+<ul>
+  <% @comments.each do |comment|%>
+    <div>
+      <li><strong><%= commenter_name(comment) %></strong></li>
+      <p style="color: currentColor; padding-left: 20px" ><%= comment.body %></p>
+      <p style="color: rgb(70,70,70); padding-left: 50px"> <%= distance_of_time_in_words(comment.created_at, Time.now)%> ago</p>
+    </div>  
+    <% pre_like = comment.likes.find { |like| like.user_id == @current_user.id } %>
+    <% if pre_like %>
+      <%= button_to 'Unlike',blog_comment_like_path(@blog,comment,pre_like) , method: :delete ,remote: true%>
+    <% else %>
+      <%= button_to 'Like',blog_comment_likes_path(@blog,comment) , method: :post ,remote: true%>
+    <% end %><br>
+    <div class="users">
+      <span><strong>Likes : </strong><%= pluralize(comment.likes.count, 'like')%>
+          <p style="font-weight: bold">Liked by : </p>
+          <% comment_like_user(comment).each do |user|%>
+            <p><%= user %></p>
+          <% end %>
+      </span>
+    </div><br>
+  <% end %>
+  <%= link_to "Create comment", new_blog_comment_path %>
+</ul>

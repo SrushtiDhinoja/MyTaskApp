@@ -1,0 +1,4 @@
+$('#likes-count').empty().append("Likes: <%= pluralize(@blog.likes.count, 'Like') %> ");
+// $('#like-button').html('<%= link_to "Unlike", blog_like_path(@blog,@like), remote: true, method: :delete,class: "btn btn-secondary" %>');
+$('#like-button').replaceWith('<%= link_to "Unlike", blog_like_path(@blog,@like), remote: true, method: :delete, id: "like-link",class: "btn btn-secondary" %>');
+// window.history.replaceState(null, null, "/other_blogs/blogs");

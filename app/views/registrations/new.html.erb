@@ -1,0 +1,51 @@
+<h1>Sign Up</h1>
+<%= form_with model: @user, url: sign_up_path do |form| %>
+  <div>
+    <%= form.label :Name %><br>
+    <%= form.text_field :name, placeholder: "Enter Full Name" %>
+    <div style="color: red">
+      <% form.object.errors.full_messages_for(:name).each do |message| %>
+        <div><%= message%></div>
+      <% end %>
+    </div> 
+  </div><br>
+  <div>
+    <%= form.label :Mobile_Number %><br>
+    <%= form.text_field :mobile, placeholder: "Enter Mobile Number" %>
+    <div style="color: red">
+      <% form.object.errors.full_messages_for(:mobile).each do |message| %>
+        <div><%= message%></div>
+      <% end %>
+    </div>  
+  </div><br>
+  <div>
+    <%= form.label :email %><br>
+    <%= form.text_field :email,  placeholder: "Enter Email" %>
+    <div style="color: red">
+      <% form.object.errors.full_messages_for(:email).each do |message| %>
+        <div><%= message%></div>
+      <% end %>
+    </div>
+</div><br>
+  <div>
+    <%= form.label :password %><br>
+    <%= form.password_field :password ,placeholder: "Enter Password" %>
+    <div style="color: red">
+      <% form.object.errors.full_messages_for(:password).each do |message| %>
+        <div><%= message%></div>
+      <% end %>
+    </div>
+  </div><br>
+  <div>
+    <%= form.label :password_confirmation %><br>
+    <%= form.password_field :password_confirmation,placeholder: "Enter Password" %>
+    <div style="color: red">
+      <% form.object.errors.full_messages_for(:password_confirmation).each do |message| %>
+        <div><%= message%></div>
+      <% end %>
+    </div>
+  </div>
+  <div><br>
+    <%= form.submit "Sign Up" %>
+  </div>
+<% end %>

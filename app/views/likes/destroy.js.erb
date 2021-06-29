@@ -1,0 +1,5 @@
+$('#likes-count').empty().append("Likes: <%= pluralize(@blog&.likes&.count, 'Like') %>");
+$('#like-button').replaceWith('<%= link_to "Like", blog_likes_path(@blog), remote: true, method: :post,id: "like-button" ,class: "btn btn-secondary" %>');
+
+// $('#like-button').replaceWith('<%= link_to "Like", blog_likes_path(@blog), remote: true, method: :post, id: "like-button" ,class: "btn btn-secondary" %>');
+  

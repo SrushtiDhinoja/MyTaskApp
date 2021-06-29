@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MyTaskApplication</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  </head>
+
+  <!-- <style>
+    body {
+      background-image: url('https://images.unsplash.com/photo-1542435503-956c469947f6?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGJsb2d8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');
+      -/*webkit-filter: blur(5px);
+      -moz-filter: blur(5px);
+      -o-filter: blur(5px);
+      -ms-filter: blur(5px);
+      filter: blur(5px);*/
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: 100% 100%;
+    }
+
+    style="padding: 20px; background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxzzOG5cMDZ_mN8f77lb_lUR4HFZZCKTenag&usqp=CAU'); background-repeat: no-repeat;background-attachment: fixed;background-size: 100% 100%;"
+  </style> -->
+
+
+  <body>
+   <!--  <script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script> -->
+    <!-- <script>
+    window.onscroll = function() {myFunction()};
+
+    var navbar = document.getElementById("navbar");
+    var sticky = navbar.offsetTop;
+
+    function myFunction() {
+      if (window.pageYOffset >= sticky) {
+        navbar.classList.add("sticky")
+      } else {
+        navbar.classList.remove("sticky");
+      }
+    }
+    </script> -->
+    <!-- <div style="padding: 20px;">
+      <div style="text-align: right; color: white">
+        <%# if @current_user %>
+          <div>
+            <header style="font-weight: bold"><%#= @current_user.name %></header>
+            <%#= @current_user.email %>
+            <%#= button_to "Logout", logout_path, method: :delete %>
+          </div>
+        <%# else %>
+          <%#= link_to "Sign In" , sign_in_path %> | 
+          <%#= link_to "Sign Up" , sign_up_path %> 
+        <% #end %>
+      </div> -->
+      <div id="logo"></div>
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light " id="navbar">
+          <div class="navbar-brand"> <%= link_to "MyTaskApplication", root_path , :class => "btn"%></div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <% if @current_user %>
+            <div class="collapse navbar-collapse" id="navbarText">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item ">
+                  <span style="margin-right: 10px" id="home">Home</span>
+                </li>
+                <li class="nav-item" id="<%= @current_user.id %>">
+                  <span style="margin-right: 10px" id="my-blogs">My Blogs</span>
+                </li>
+                <li class="nav-item">
+                  <span style="margin-right: 10px" id="other-blogs">Other Blogs</span>
+                </li>
+              </ul>
+              <span class="navbar-text">
+                <%= @current_user.email  %>
+              </span>
+              <div style="padding: 5px"><%= button_to "Logout", logout_path, method: :delete %></div>
+            </div>
+          <% else %>
+          <ul class="navbar-nav mr-auto">
+          </ul>
+          <div class="navbar-text">
+            <%= link_to "Sign In " , sign_in_path %> | 
+            <%= link_to " Sign Up" , sign_up_path %> 
+          </div>
+        <% end %>
+      </nav>
+      <div style="padding: 50px" id="div-content">
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<h1>New Blog</h1>
+<%= form_with model: [@current_user,@current_user.blogs.build]  do |form| %>
+  <div>
+    <%= form.label :Title %><br>
+    <%= form.text_field :blog_title ,placeholder: "Enter Blog Title" , class: "form-control col-sm-2" %>
+    <div style="color: red">
+      <% @blog.errors.full_messages_for(:blog_title).each do |message| %>
+        <div><%= message%></div>
+      <% end %>
+    </div>
+  </div>
+  <div>
+    <%= form.label :Description %><br>
+    <%= form.text_area :description , placeholder: "Enter Blog Content", class: "form-control col-sm-2"%>
+    <div style="color: red">
+      <% @blog.errors.full_messages_for(:description).each do |message| %>
+        <div><%= message%></div>
+      <% end %>
+    </div><br>
+  </div>
+  <button type="submit" class="btn btn-secondary">Create Blog</button>
+<% end %> 

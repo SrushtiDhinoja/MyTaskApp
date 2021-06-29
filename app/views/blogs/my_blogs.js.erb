@@ -1,0 +1,2 @@
+$('#div-content').html("<%= escape_javascript(render :partial => 'my_blogs') %>");
+window.history.replaceState(null, null, "/users/<%= @current_user.id %>/blogs/my_blogs");

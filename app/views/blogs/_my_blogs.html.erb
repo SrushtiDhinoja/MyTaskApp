@@ -1,0 +1,40 @@
+<h1>My Blogs</h1>
+<div style="padding-left: 20px">
+  <% @current_user.blogs.each do |blog| %>
+    <h2>Blog</h2>
+    <div style="padding-left: 20px">
+      <h3><%= blog.blog_title %></h3>
+      <p style="padding-left: 20px"><%= blog.description %></p>
+      <% if blog.likes.present? %>
+        <br>
+        <div class="users">
+          <span><strong>Likes : </strong><%= pluralize(blog.likes.count, 'like')%>
+              <p>Liked by : </p>
+              <% blog_like_user(blog).each do |user|%>
+                <p><%= user %></p>
+              <% end %>
+          </span>
+        </div><br>
+      <% end %>
+      <h4><%= pluralize(blog.comments.count, 'Comment', plural: 'Comments')%></h4>
+      <% if blog.comments.present? %>
+        <% blog.comments.each do |comment| %>
+          <div>
+            <li><strong><%= commenter_name(comment) %></strong></li>
+            <p style="color: currentColor; padding-left: 40px" ><%= comment.body %></p>
+            <p style="color: rgb(70,70,70); padding-left: 70px"> <%= distance_of_time_in_words(comment.created_at, Time.now)%> ago</p>
+            <div class="users", style="padding-left: 50px">
+              <span ><strong>Likes : </strong><%= pluralize(comment.likes.count, 'like')%>
+                  <p>Liked by : </p>
+                  <% comment_like_user(comment).each do |user|%>
+                    <p><%= user %></p>
+                  <% end %>
+              </span>
+            </div><br>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+<%= link_to "Create Blog", new_user_blog_path %>

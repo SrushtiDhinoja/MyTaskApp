@@ -1,0 +1,15 @@
+<h1>New comment</h1>
+<%= form_with model: [@blog,@blog.comments.build]  do |form| %>
+  <div>
+    <%= form.label :comment %><br>
+    <%= form.text_field :body, placeholder: "Enter Comment"%><br>
+    <div style="color: red">
+      <% @comment.errors.full_messages_for(:body).each do |message| %>
+        <div><%= message%></div>
+      <% end %>
+    </div>
+  </div>
+  <div>
+    <%= form.submit "Create Comment" %>
+  </div>
+<% end %> 
